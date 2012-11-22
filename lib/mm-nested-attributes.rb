@@ -71,26 +71,26 @@ module MongoMapper
         end
       end
       
-      class OneEmbeddedProxy
-        def save_to_collection(options={})
-          if @target 
-            if @target.marked_for_destruction?
-              @target = nil
-            else
-              @target.persist(options)
-            end
-          end
-        end
-      end
-      
-      class EmbeddedCollection
-        def save_to_collection(options={})
-          if @target
-            @target.delete_if(&:marked_for_destruction?)
-            @target.each{|doc| doc.persist(options)}
-          end
-        end
-      end
+      #class OneEmbeddedProxy
+      #  def save_to_collection(options={})
+      #    if @target 
+      #      if @target.marked_for_destruction?
+      #        @target = nil
+      #      else
+      #        @target.persist(options)
+      #      end
+      #    end
+      #  end
+      #end
+      #
+      #class EmbeddedCollection
+      #  def save_to_collection(options={})
+      #    if @target
+      #      @target.delete_if(&:marked_for_destruction?)
+      #      @target.each{|doc| doc.persist(options)}
+      #    end
+      #  end
+      #end
           
     end  
   end
