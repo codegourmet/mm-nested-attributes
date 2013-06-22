@@ -142,7 +142,7 @@ module MongoMapper
               record.mark_for_destruction
             else
               record._parent_document.class.associations.each do |key, association|
-                if association.klass.eql?(record.class)
+                if association.klass.eql?(record.class) || record.class < association.klass
                   record._parent_document.send(key).delete_if {|q| q.id.to_s == record.id.to_s }
                 end
               end
